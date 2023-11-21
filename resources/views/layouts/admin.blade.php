@@ -44,26 +44,37 @@
           </li> -->
                     </ul>
                     <ul class="navbar-nav ml-md-auto d-md-flex">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Home
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="admins/login-admins.html">login
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                username
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="#">Logout</a>
 
-                        </li>
+                        @auth('admin')
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{route('admins.dashboard')}}">Home
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
 
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{ Auth::guard('admin')->user()->name }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}</a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+
+                            </li>
+                        @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="admins/login-admins.html">login
+                                    <span class="sr-only">(current)</span>
+                                </a>
+                            </li>
+                        @endauth
 
                     </ul>
                 </div>

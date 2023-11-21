@@ -67,10 +67,12 @@ Route::group(['prefix'=> 'users'], function () {
 
 });
 
+//check with middleware if admin already authorized or not
+Route::get('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->name('admins.login')->middleware('checkForAuth');
+Route::post('admin/login', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('admins.check.login');
 
-Route::group(['prefix'=> 'admin'], function () {
-    Route::get('/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->name('admins.login');
-    Route::post('/login', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('admins.check.login');
+//add the middleware because I can see the dashboard just if I already logged in
+Route::group(['prefix'=> 'admin', 'middleware' => 'auth:admin'], function () {
 
     Route::get('/dashboard', [App\Http\Controllers\Admins\AdminsController::class, 'adminDashboard'])->name('admins.dashboard');
    
