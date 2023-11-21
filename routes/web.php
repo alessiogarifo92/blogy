@@ -45,6 +45,9 @@ Route::get('/delete-post/{id}', [App\Http\Controllers\posts\PostsController::cla
 Route::get('/edit-post/{id}', [App\Http\Controllers\posts\PostsController::class, 'editPost'])->name('posts.edit');
 Route::post('/update-post/{id}', [App\Http\Controllers\posts\PostsController::class, 'updatePost'])->name('posts.update');
 
+//searchbar
+Route::any('/search', [App\Http\Controllers\posts\PostsController::class, 'search'])->name('posts.search');
+
 });
 
 Route::group(['prefix'=> 'categories'], function () {
@@ -59,5 +62,7 @@ Route::group(['prefix'=> 'users'], function () {
 
     Route::get('/edit/{userId}', [App\Http\Controllers\Users\UsersController::class, 'editProfile'])->name('users.edit');
     Route::post('/update/{userId}', [App\Http\Controllers\Users\UsersController::class, 'updateProfile'])->name('users.update');
+
+    Route::get('/show/{userId}', [App\Http\Controllers\Users\UsersController::class, 'profile'])->name('users.show');
 
 });

@@ -24,7 +24,7 @@
         integrity="sha384-Atwg2Pkwv9vp0ygtn1JAojH0nYbwNJLPhwyoVbhoPwBhjQPR5VtM2+xf0Uwh9KtT" crossorigin="anonymous">
     </script>
 
-{{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> --}}
 
@@ -59,8 +59,10 @@
                             </div>
 
                             <div class="col-8 text-center">
-                                <form action="#" class="search-form d-inline-block d-lg-none">
-                                    <input type="text" class="form-control" placeholder="Search...">
+                                <form action="{{ route('posts.search') }}" method="POST"
+                                    class="search-form d-inline-block d-lg-none">
+                                    @csrf
+                                    <input name="search" type="text" class="form-control" placeholder="Search...">
                                     <span class="bi-search"></span>
                                 </form>
 
@@ -93,7 +95,8 @@
                                             </a>
 
                                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                                <a class="dropdown-item" href="{{route('users.edit', Auth::user()->id)}}">
+                                                <a class="dropdown-item"
+                                                    href="{{ route('users.edit', Auth::user()->id) }}">
                                                     Update Profile
                                                 </a>
                                                 <a class="dropdown-item" href="{{ route('logout') }}"
@@ -118,8 +121,11 @@
                                     class="burger ms-auto float-end site-menu-toggle js-menu-toggle d-inline-block d-lg-none light">
                                     <span></span>
                                 </a>
-                                <form action="#" class="search-form d-none d-lg-inline-block">
-                                    <input type="text" class="form-control" placeholder="Search...">
+
+                                <form action="{{ route('posts.search') }}" method="POST"
+                                    class="search-form d-none d-lg-inline-block">
+                                    @csrf
+                                    <input name="search" type="text" class="form-control" placeholder="Search...">
                                     <span class="bi-search"></span>
                                 </form>
                             </div>

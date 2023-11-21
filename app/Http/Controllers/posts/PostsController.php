@@ -162,13 +162,34 @@ class PostsController extends Controller
    {
 
       $updatePost = PostModel::find($id);
-      $updatePost->update($request->all());
 
-      if ($updatePost) {
-         return redirect()->route("posts.single", $id)->with("update", "Post successfully updated");
+      $validation = Request()->validate([
+         "title" => "required|max:80",
+         "category" => "required",
+         "description" => "required|max:900",
+      ]);
 
+      if ($validation) {
+
+         $updatePost->update($request->all());
+
+         if ($updatePost) {
+            return redirect()->route("posts.single", $id)->with("update", "Post successfully updated");
+
+         }
       }
 
+
+   }
+
+   public function search(Request $request)
+   {
+
+      $search = $request->get('search');
+
+      $results = PostModel::where('title', 'like', '%' .$search . '%')->get();
+
+      return view("pages.search", compact('search', 'results'));
    }
 
    public function contact()
