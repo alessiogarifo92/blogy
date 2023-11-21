@@ -66,3 +66,12 @@ Route::group(['prefix'=> 'users'], function () {
     Route::get('/show/{userId}', [App\Http\Controllers\Users\UsersController::class, 'profile'])->name('users.show');
 
 });
+
+
+Route::group(['prefix'=> 'admin'], function () {
+    Route::get('/login', [App\Http\Controllers\Admins\AdminsController::class, 'viewLogin'])->name('admins.login');
+    Route::post('/login', [App\Http\Controllers\Admins\AdminsController::class, 'checkLogin'])->name('admins.check.login');
+
+    Route::get('/dashboard', [App\Http\Controllers\Admins\AdminsController::class, 'adminDashboard'])->name('admins.dashboard');
+   
+});
