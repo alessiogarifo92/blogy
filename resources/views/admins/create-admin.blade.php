@@ -4,40 +4,52 @@
         <div class="col">
             <div class="card">
                 <div class="card-body">
+
                     @if (session()->has('error'))
                         <p class="alert alert-danger">{{ session('error') }}</p>
                     @endif
-                    <h5 class="card-title mt-5">Login</h5>
-                    <form method="POST" class="p-auto" action="{{ route('admins.check.login') }}">
+                    <h5 class="card-title mb-5 d-inline">Create Admins</h5>
+                    <form method="POST" action="{{ route('admins.store') }}" enctype="multipart/form-data">
                         @csrf
                         <!-- Email input -->
-                        <div class="form-outline mb-4">
+                        <div class="form-outline mb-4 mt-4">
                             <input type="email" name="email" id="form2Example1" class="form-control"
-                                placeholder="Email" />
+                                placeholder="email" />
                             @error('email')
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
+
                         </div>
 
-
-                        <!-- Password input -->
                         <div class="form-outline mb-4">
-                            <input type="password" name="password" id="form2Example2" placeholder="Password"
-                                class="form-control" />
+                            <input type="text" name="name" id="form2Example1" class="form-control"
+                                placeholder="name" />
+                            @error('name')
+                                <span class="text-danger" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-outline mb-4">
+                            <input type="password" name="password" id="form2Example1" class="form-control"
+                                placeholder="password" />
                             @error('password')
                                 <span class="text-danger" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-
                         </div>
 
 
 
+
+
+
+
                         <!-- Submit button -->
-                        <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">Login</button>
+                        <button type="submit" name="submit" class="btn btn-primary  mb-4 text-center">create</button>
 
 
                     </form>
@@ -45,4 +57,5 @@
                 </div>
             </div>
         </div>
-    @endsection
+    </div>
+@endsection

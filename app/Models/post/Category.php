@@ -15,5 +15,7 @@ class Category extends Model
         'id',
         'name',
         'created_at'
-        ];
+    ];
+
+    public $timestamps = false;
 }

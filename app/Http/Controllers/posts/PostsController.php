@@ -20,8 +20,13 @@ class PostsController extends Controller
 
       //first section
       $posts = PostModel::all()->take(2);
-      $postOne = PostModel::take(1)->orderBy('id', 'desc')->get();
-      $postTwo = PostModel::take(2)->orderBy('title', 'desc')->get();
+      //collect all postsIds so that I can avoid display the same posts more times
+      $postsIds = $posts->pluck('id')->toArray();
+
+      $postOne = PostModel::take(1)->whereNotIn('id', $postsIds)->get();
+      $postsIds = array_merge($postsIds, $postOne->pluck('id')->toArray());
+
+      $postTwo = PostModel::take(2)->whereNotIn('id', $postsIds)->get();
 
 
       //business section

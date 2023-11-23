@@ -25,19 +25,19 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav side-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-white" style="margin-left: 20px;" href="index.html">Home
+                            <a class="nav-link text-white" style="margin-left: 20px;" href="{{route('admins.dashboard')}}">Home
                                 <span class="sr-only">(current)</span>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="admins/admins.html" style="margin-left: 20px;">Admins</a>
+                            <a class="nav-link" href="{{route('admins.adminsShow')}}" style="margin-left: 20px;">Admins</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="categories-admins/show-categories.html"
+                            <a class="nav-link" href="{{route('admins.categoriesShow')}}"
                                 style="margin-left: 20px;">Categories</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="posts-admins/show-posts.html" style="margin-left: 20px;">Posts</a>
+                            <a class="nav-link" href="{{route('admins.postsShow')}}" style="margin-left: 20px;">Posts</a>
                         </li>
                         <!--  <li class="nav-item">
             <a class="nav-link" href="#" style="margin-left: 20px;">Comments</a>
@@ -70,7 +70,7 @@
                             </li>
                         @else
                             <li class="nav-item">
-                                <a class="nav-link" href="admins/login-admins.html">login
+                                <a class="nav-link" href="{{route('admins.login')}}">login
                                     <span class="sr-only">(current)</span>
                                 </a>
                             </li>
