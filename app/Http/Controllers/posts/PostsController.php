@@ -19,14 +19,14 @@ class PostsController extends Controller
    {
 
       //first section
-      $posts = PostModel::all()->take(2);
+      $posts = PostModel::inRandomOrder()->limit(2)->get();
       //collect all postsIds so that I can avoid display the same posts more times
       $postsIds = $posts->pluck('id')->toArray();
 
-      $postOne = PostModel::take(1)->whereNotIn('id', $postsIds)->get();
+      $postOne = PostModel::inRandomOrder()->whereNotIn('id', $postsIds)->limit(1)->get();
       $postsIds = array_merge($postsIds, $postOne->pluck('id')->toArray());
 
-      $postTwo = PostModel::take(2)->whereNotIn('id', $postsIds)->get();
+      $postTwo = PostModel::inRandomOrder()->whereNotIn('id', $postsIds)->limit(2)->get();
 
 
       //business section
